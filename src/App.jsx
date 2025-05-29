@@ -1,9 +1,12 @@
-import Layout from "./componets/layout/Layout";
+import AppLayout from "./layout/AppLayout";
+import ProjectsPage from "./pages/ProjectsPage";
 
 function App() {
   return (
     <>
-      <Layout />
+      <AppLayout>
+        <ProjectsPage />
+      </AppLayout>
     </>
   );
 }
