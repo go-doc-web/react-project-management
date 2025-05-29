@@ -2,6 +2,7 @@ import { useState } from "react";
 import ProjectSidebar from "../componets/ProjectSidebar";
 import NoProjectSelected from "../componets/NoProjectSelected";
 import NewProgect from "../componets/NewProject";
+import { PROJECT_MODES } from "../constants/projectModes";
 
 const ProjectsPage = () => {
   const [projectState, setProjectState] = useState({
@@ -14,15 +15,15 @@ const ProjectsPage = () => {
     setProjectState((prevState) => {
       return {
         ...prevState,
-        currentView: "ADDING_NEW_PROJECT",
+        currentView: PROJECT_MODES.ADDING_NEW_PROJECT,
       };
     });
   }
   let content;
 
-  if (projectState.currentView === "ADDING_NEW_PROJECT") {
+  if (projectState.currentView === PROJECT_MODES.ADDING_NEW_PROJECT) {
     content = <NewProgect />;
-  } else if (projectState.currentView === "NO_PROJECT_SELECTED") {
+  } else if (projectState.currentView === PROJECT_MODES.NO_PROJECT_SELECTED) {
     content = (
       <NoProjectSelected
         onStartAddProject={handleStartAddProject}
