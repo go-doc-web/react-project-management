@@ -1,6 +1,6 @@
 import React from "react";
 
-const Input = ({ textarea, label, ...props }) => {
+const Input = ({ textarea, label, ref, ...props }) => {
   const classes =
     "w-full p-1 rounded-sm border-b-2 border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600";
   return (
@@ -9,9 +9,9 @@ const Input = ({ textarea, label, ...props }) => {
         {label}
       </label>
       {textarea ? (
-        <textarea className={classes} {...props} />
+        <textarea ref={ref} className={classes} {...props} />
       ) : (
-        <input className={classes} {...props} />
+        <input ref={ref} className={classes} {...props} />
       )}
     </p>
   );

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import uuid from "react-uuid";
 import ProjectSidebar from "../componets/ProjectSidebar";
 import NoProjectSelected from "../componets/NoProjectSelected";
 import NewProgect from "../componets/NewProject";
@@ -19,10 +20,25 @@ const ProjectsPage = () => {
       };
     });
   }
+
+  function handleAddProject(dataProject) {
+    const newProject = {
+      ...dataProject,
+      id: uuid(),
+    };
+
+    setProjectState((prevState) => {
+      return {
+        ...prevState,
+        projects: [...prevState.projects, newProject],
+      };
+    });
+  }
+
   let content;
 
   if (projectState.currentView === PROJECT_MODES.ADDING_NEW_PROJECT) {
-    content = <NewProgect />;
+    content = <NewProgect onAddProject={handleAddProject} />;
   } else if (projectState.currentView === PROJECT_MODES.NO_PROJECT_SELECTED) {
     content = (
       <NoProjectSelected
