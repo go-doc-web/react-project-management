@@ -24,16 +24,20 @@ const ProjectsPage = () => {
   function handleAddProject(dataProject) {
     const newProject = {
       ...dataProject,
+
       id: uuid(),
     };
 
     setProjectState((prevState) => {
       return {
         ...prevState,
+        currentView: PROJECT_MODES.NO_PROJECT_SELECTED,
         projects: [...prevState.projects, newProject],
       };
     });
   }
+
+  console.log("Projects", projectState);
 
   let content;
 
@@ -50,7 +54,10 @@ const ProjectsPage = () => {
 
   return (
     <>
-      <ProjectSidebar onStartAddProject={handleStartAddProject} />
+      <ProjectSidebar
+        projects={projectState.projects}
+        onStartAddProject={handleStartAddProject}
+      />
       {content}
     </>
   );

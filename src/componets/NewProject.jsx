@@ -2,11 +2,13 @@ import { useRef } from "react";
 
 import Input from "./Input";
 import Button from "./Button";
-Button;
+
 const NewProject = ({ onAddProject }) => {
   const titleRef = useRef(null);
   const descriptionRef = useRef(null);
   const dateRef = useRef(null);
+
+  // !на данний час , ціль зробити виборку values за допомогою Refs без вкористання <form></form> and onChange for state
 
   function handleProgectSave() {
     const title = titleRef.current.value;

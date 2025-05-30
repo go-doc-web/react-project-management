@@ -1,4 +1,3 @@
-import React from "react";
 import noProjectIcon from "../assets/no-projects.png";
 import Button from "./Button";
 const NoProjectSelected = ({ title, onStartAddProject }) => {
@@ -10,7 +9,7 @@ const NoProjectSelected = ({ title, onStartAddProject }) => {
         alt={title}
       />
       <h2 className="my-4 font-bold text-stone-500 text-xl">{title}</h2>
-      <p className="opacity-45 text-stone-400">
+      <p className=" text-stone-600">
         Select a project or get started with a new one
       </p>
       <p className="mt-8">
