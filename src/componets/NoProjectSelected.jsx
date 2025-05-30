@@ -9,7 +9,7 @@ const NoProjectSelected = ({ title, onStartAddProject }) => {
         alt={title}
       />
       <h2 className="my-4 font-bold text-stone-500 text-xl">{title}</h2>
-      <p className=" text-stone-600">
+      <p className=" text-stone-400">
         Select a project or get started with a new one
       </p>
       <p className="mt-8">
