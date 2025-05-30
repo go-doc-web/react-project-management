@@ -2,6 +2,7 @@ import { useState } from "react";
 import uuid from "react-uuid";
 import ProjectSidebar from "../componets/ProjectSidebar";
 import NoProjectSelected from "../componets/NoProjectSelected";
+import SelectedProject from "../componets/SelectedProject";
 import NewProgect from "../componets/NewProject";
 
 import { PROJECT_MODES } from "../constants/projectModes";
@@ -47,9 +48,24 @@ const ProjectsPage = () => {
     });
   }
 
+  function handleSelectProject(id) {
+    setProjectState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: id,
+        currentView: PROJECT_MODES.PROJECT_SELECTED,
+      };
+    });
+    console.log("selectedProjectId", projectState.selectedProjectId);
+  }
+
   console.log("Projects", projectState);
 
-  let content;
+  const selectedProject = projectState.projects.find(
+    (project) => project.id === projectState.selectedProjectId
+  );
+
+  let content = <SelectedProject project={selectedProject} />;
 
   if (projectState.currentView === PROJECT_MODES.ADDING_NEW_PROJECT) {
     content = (
@@ -72,6 +88,7 @@ const ProjectsPage = () => {
       <ProjectSidebar
         projects={projectState.projects}
         onStartAddProject={handleStartAddProject}
+        onSelectProgect={handleSelectProject}
       />
       {content}
     </>
