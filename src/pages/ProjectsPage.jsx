@@ -3,7 +3,7 @@ import uuid from "react-uuid";
 import ProjectSidebar from "../componets/ProjectSidebar";
 import NoProjectSelected from "../componets/NoProjectSelected";
 import SelectedProject from "../componets/SelectedProject";
-import NewProgect from "../componets/NewProject";
+import NewProject from "../componets/NewProject";
 
 import { PROJECT_MODES } from "../constants/projectModes";
 
@@ -27,6 +27,7 @@ const ProjectsPage = () => {
     setProjectState((prevState) => {
       return {
         ...prevState,
+        selectedProjectId: undefined,
         currentView: PROJECT_MODES.NO_PROJECT_SELECTED,
       };
     });
@@ -56,20 +57,13 @@ const ProjectsPage = () => {
         currentView: PROJECT_MODES.PROJECT_SELECTED,
       };
     });
-    console.log("selectedProjectId", projectState.selectedProjectId);
   }
 
-  console.log("Projects", projectState);
-
-  const selectedProject = projectState.projects.find(
-    (project) => project.id === projectState.selectedProjectId
-  );
-
-  let content = <SelectedProject project={selectedProject} />;
+  let content;
 
   if (projectState.currentView === PROJECT_MODES.ADDING_NEW_PROJECT) {
     content = (
-      <NewProgect
+      <NewProject
         onAddProject={handleAddProject}
         onCancelAddProject={handleCancelAddProject}
       />
@@ -81,6 +75,13 @@ const ProjectsPage = () => {
         title="No Project Selected"
       />
     );
+  } else if (projectState.currentView === PROJECT_MODES.PROJECT_SELECTED) {
+    const selectedProject = projectState.projects.find(
+      (project) => project.id === projectState.selectedProjectId
+    );
+    content = <SelectedProject project={selectedProject} />;
+  } else {
+    content = <p>Nothing ...</p>;
   }
 
   return (
@@ -88,7 +89,7 @@ const ProjectsPage = () => {
       <ProjectSidebar
         projects={projectState.projects}
         onStartAddProject={handleStartAddProject}
-        onSelectProgect={handleSelectProject}
+        onSelectProject={handleSelectProject}
       />
       {content}
     </>
