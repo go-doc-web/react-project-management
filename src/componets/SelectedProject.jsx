@@ -1,6 +1,6 @@
 import Button from "./Button";
 
-const SelectedProject = ({ project }) => {
+const SelectedProject = ({ project, onDeleteProject }) => {
   const formatedDate = new Date(project.date).toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
@@ -13,7 +13,7 @@ const SelectedProject = ({ project }) => {
           <h1 className="text-3xl font-bold text-stone-600 mb-2">
             {project.title}
           </h1>
-          <Button variant="secondery" text="Delete" />
+          <Button onClick={onDeleteProject} variant="secondery" text="Delete" />
         </div>
         <p className="mb-4 text-stone-400">{formatedDate}</p>
         <p className="text-stone-600 whitespace-pre-wrap">

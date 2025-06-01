@@ -59,6 +59,18 @@ const ProjectsPage = () => {
     });
   }
 
+  function handleDeleteSelectedProject() {
+    setProjectState((prevState) => {
+      return {
+        ...prevState,
+        currentView: PROJECT_MODES.NO_PROJECT_SELECTED,
+        projects: prevState.projects.filter(
+          (project) => project.id !== prevState.selectedProjectId
+        ),
+      };
+    });
+  }
+
   let content;
 
   if (projectState.currentView === PROJECT_MODES.ADDING_NEW_PROJECT) {
@@ -79,7 +91,12 @@ const ProjectsPage = () => {
     const selectedProject = projectState.projects.find(
       (project) => project.id === projectState.selectedProjectId
     );
-    content = <SelectedProject project={selectedProject} />;
+    content = (
+      <SelectedProject
+        onDeleteProject={handleDeleteSelectedProject}
+        project={selectedProject}
+      />
+    );
   } else {
     content = <p>Nothing ...</p>;
   }
