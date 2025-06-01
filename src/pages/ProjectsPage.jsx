@@ -22,10 +22,6 @@ const ProjectsPage = () => {
       projectId: projectState.selectedProjectId,
     };
 
-    if (taskText.trim() === "") {
-      return;
-    }
-
     setProjectState((prevState) => {
       return {
         ...prevState,
@@ -138,6 +134,7 @@ const ProjectsPage = () => {
         projects={projectState.projects}
         onStartAddProject={handleStartAddProject}
         onSelectProject={handleSelectProject}
+        selectedProjectId={projectState.selectedProjectId}
       />
       {content}
     </>
