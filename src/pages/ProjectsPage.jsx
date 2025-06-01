@@ -34,7 +34,6 @@ const ProjectsPage = () => {
     });
   }
   function handleDeleteTask(id) {
-    console.log("taskIdIn", id);
     setProjectState((prevState) => {
       return {
         ...prevState,

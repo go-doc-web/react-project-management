@@ -14,7 +14,6 @@ const SelectedProject = ({
     day: "numeric",
   });
 
-  console.log("project", project);
   const filtered = tasks.filter((task) => task.projectId === project.id);
   return (
     <div className="w-[35rem] mt-16">
