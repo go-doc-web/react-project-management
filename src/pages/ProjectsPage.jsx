@@ -12,7 +12,36 @@ const ProjectsPage = () => {
     selectedProjectId: undefined,
     currentView: "NO_PROJECT_SELECTED",
     projects: [],
+    tasks: [],
   });
+
+  function handleAddTask(taskText) {
+    const newTask = {
+      text: taskText,
+      taskId: uuid(),
+      projectId: projectState.selectedProjectId,
+    };
+
+    if (taskText.trim() === "") {
+      return;
+    }
+
+    setProjectState((prevState) => {
+      return {
+        ...prevState,
+        tasks: [newTask, ...prevState.tasks],
+      };
+    });
+  }
+  function handleDeleteTask(id) {
+    console.log("taskIdIn", id);
+    setProjectState((prevState) => {
+      return {
+        ...prevState,
+        tasks: prevState.tasks.filter((task) => task.taskId !== id),
+      };
+    });
+  }
 
   function handleStartAddProject() {
     setProjectState((prevState) => {
@@ -95,6 +124,9 @@ const ProjectsPage = () => {
       <SelectedProject
         onDeleteProject={handleDeleteSelectedProject}
         project={selectedProject}
+        onAddTask={handleAddTask}
+        onDeleteTask={handleDeleteTask}
+        tasks={projectState.tasks}
       />
     );
   } else {

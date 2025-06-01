@@ -1,11 +1,21 @@
 import Button from "./Button";
+import Task from "./Task";
 
-const SelectedProject = ({ project, onDeleteProject }) => {
+const SelectedProject = ({
+  project,
+  onDeleteProject,
+  onAddTask,
+  onDeleteTask,
+  tasks,
+}) => {
   const formatedDate = new Date(project.date).toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
     day: "numeric",
   });
+
+  console.log("project", project);
+  const filtered = tasks.filter((task) => task.projectId === project.id);
   return (
     <div className="w-[35rem] mt-16">
       <header className="pb-4 mb-4 border-b-2 border-stone-300">
@@ -20,7 +30,11 @@ const SelectedProject = ({ project, onDeleteProject }) => {
           {project.description}
         </p>
       </header>
-      Task ...
+      <Task
+        filteredTasks={filtered}
+        onAddTask={onAddTask}
+        onDeleteTask={onDeleteTask}
+      />
     </div>
   );
 };
